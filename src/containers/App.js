@@ -1,8 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
+
+export const AuthContext = React.createContext(false);
 
 class App extends PureComponent {
   constructor(props) {
@@ -16,8 +18,10 @@ class App extends PureComponent {
         { id: '345', name:'Marty', age: 26 }
       ],
       otherState: 'some other value',
-      showPersons: false
-    }
+      showPersons: false,
+      toggleClicked: 0,
+      authenticated: false
+    };
   }
 
   componentWillMount() {
@@ -36,6 +40,18 @@ class App extends PureComponent {
 
   componentWillUpdate(nextProps, nextState) {
       console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState);
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log('[UPDATE App.js] Inside getDerivedStateFromProps', nextProps, prevState);
+
+    return prevState;
+  }
+
+  getSnapshotBeforeUpdate() {
+    console.log('[UPDATE App.js] Inside getSnapshotBeforeUpdate');
+
+    return null;
   }
 
   componentDidUpdate() {
@@ -81,7 +97,16 @@ class App extends PureComponent {
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({showPersons: !doesShow});
+    this.setState( (prevState, props) => { 
+      return {
+        showPersons: !doesShow,
+        toggleClicked: prevState.toggleClicked + 1
+      }
+    } );
+  }
+
+  loginHandler = () => {
+    this.setState({authenticated: true});
   }
 
   render() {
@@ -94,22 +119,27 @@ class App extends PureComponent {
         <Persons
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler} />
+          changed={this.nameChangedHandler} 
+        />
       );
     }
 
     return (
-      <WithClass classes={classes.App}>
+      <Fragment>
         <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
           <Cockpit
             title={this.props.appTitle}
             showPersons={this.state.showPersons}
             persons={this.state.persons}
-            clicked={this.togglePersonsHandler} />
-          {persons}
-      </WithClass>
+            login={this.loginHandler}
+            clicked={this.togglePersonsHandler}
+          />
+          <AuthContext.Provider value={this.state.authenticated}>
+            {persons}
+          </AuthContext.Provider>
+      </Fragment>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
