@@ -9,8 +9,10 @@
   color: #8F5C2C;
   text-decoration: none;
   width: 100%;
+  padding: 15px;
   box-sizing: border-box;
   display: block;
+  font-weight: bold;
 }
 
 .NaviagtionItem a:hover,

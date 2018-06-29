@@ -89,6 +89,14 @@
     border-radius: 15px;
 }
 
+.Chicken {
+    width: 80%;
+    height: 8%;
+    background: linear-gradient(#f2d6c4, #F2ECD7);
+    margin: 2% auto;
+    border-radius: 15px;
+}
+
 .Cheese {
     width: 90%;
     height: 4.5%;
