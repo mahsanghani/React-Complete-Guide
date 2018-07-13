@@ -23,7 +23,7 @@ const buildControls = ( props ) => (
     ))}
     <button className={classes.OrderButton}
             disabled={ ! props.purchasable}
-            onClick={props.orderNow}>ORDER NOW</button>
+            onClick={props.orderNow}>{props.isAuth ? 'ORDER NOW' : 'LOG IN TO ORDER'}</button>
   </div>
 );
 
