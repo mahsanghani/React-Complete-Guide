@@ -18,7 +18,7 @@
 }
 
 .ModalClosed {
-  animation: closeModal 1s ease-out forwards;
+  animation: closeModal 0.8s ease-out forwards;
 }
 
 /* .fade-slide-enter {
