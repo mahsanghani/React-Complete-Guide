@@ -1,4 +1,6 @@
 export {
+  setIngredients,
+  setIngredientsFailed,
   addIngredient,
   removeIngredient,
   initIngredients
