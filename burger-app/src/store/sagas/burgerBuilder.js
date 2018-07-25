@@ -12,3 +12,4 @@ export function* initIngredientsSaga() {
     yield put(actions.setIngredientsFailed());
   }
 }
+
