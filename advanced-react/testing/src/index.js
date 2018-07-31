@@ -1,6 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Root from 'Root';
 
 import App from 'components/App';
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+const app = (
+  <Root>
+    <App />
+  </Root>
+);
+
+ReactDOM.render(app, document.querySelector('#root'));
