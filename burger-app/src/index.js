@@ -30,13 +30,13 @@ sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchBurgerBuilder);
 sagaMiddleware.run(watchOrder);
 
-const app=(
+const app = (
   <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>
-)
+);
 
 ReactDOM.render(app, document.getElementById('root'));
 registerServiceWorker();
