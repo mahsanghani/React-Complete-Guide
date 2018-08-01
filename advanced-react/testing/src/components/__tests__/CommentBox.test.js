@@ -16,8 +16,8 @@ it('has a text area', () => {
   expect(wrapper.find('textarea').length).toEqual(1);
 });
 
-it('has a button', () => {
-  expect(wrapper.find('button').length).toEqual(1);
+it('has 2 buttons', () => {
+  expect(wrapper.find('button').length).toEqual(2);
 });
 
 describe('the text area', () => {
