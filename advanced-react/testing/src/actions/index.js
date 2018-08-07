@@ -16,3 +16,10 @@ export function fetchComments() {
     payload: response
   }
 }
+
+export function changeAuth(isLoggedIn) {
+  return {
+    type: actionTypes.CHANGE_AUTH,
+    payload: isLoggedIn
+  }
+}
